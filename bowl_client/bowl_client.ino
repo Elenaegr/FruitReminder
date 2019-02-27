@@ -1,12 +1,14 @@
 
 #include "wifi.h"
 #include "scale.h"
+#include <Servo.h>
 
 #define EMPTY_URL "/isEmpty"
 #define REFILL_URL "/isRefill"
 #define BROKEN_URL "/broken"
 #define DEFAULT_URL "/default"
 
+Servo servo;
 
 unsigned long previousMillis = 0;        // will store last time motor was updated
 long OnTime = 0.5 * 60000;           // milliseconds of on-time (min * 60000)
@@ -95,6 +97,7 @@ void bowlUpdate() {
       patternStatus = 0;
       //reset patern
       connectAndSendData(DEFAULT_URL);
+      //servo.write(0);
     }
   } else if (currentMillis - previousMillis >= OnTime) {
     if (patternStatus == 0) {
@@ -103,6 +106,7 @@ void bowlUpdate() {
       patternStatus = 1;
       //time to eat fruit
       connectAndSendData(BROKEN_URL);
+      //servo.write(45);
     }
   }
 

@@ -9,8 +9,6 @@
 #define BROKEN_URL "/broken"
 #define DEFAULT_URL "/default"
 
-
-
 /*
   const int LED = ;
   const int servoMotor = ;
